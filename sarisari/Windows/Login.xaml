@@ -1,0 +1,136 @@
+﻿<Window x:Class="sarisari.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sarisari"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:wpfCore="clr-namespace:WpfCore;assembly=WpfCore"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        x:Name="login"
+        Title="Login" Height="600" Width="500">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:Login}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border Padding="10">
+                            <Grid>
+                                <Border CornerRadius="10" 
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.5"/>
+                                    </Border.Effect>
+                                </Border>
+                                <Grid >
+                                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                                </Grid>
+
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+            <TextBlock 
+                   Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                FontWeight="SemiBold"
+                   Text="Enter PIN Code"
+                   FontSize="25"/>
+            <Separator Margin="0,0,0,10"/>
+            <Border BorderBrush="{Binding BorderColor}"
+                    BorderThickness="2">
+                <StackPanel Orientation="Horizontal"
+                            local:PINEnteredAttachedProperty.Value="{Binding IsPINEntered}"
+                            HorizontalAlignment="Center">
+                    <TextBlock Foreground="{Binding FG1, FallbackValue=Gray}"
+                               FontWeight="Black"
+                           Text="*"
+                           FontSize="30"/>
+                    <TextBlock Foreground="Gray"
+                               FontWeight="Black"
+                           Text="*"
+                           FontSize="30"/>
+                    <TextBlock Foreground="Gray"
+                               FontWeight="Black"
+                           Text="*"
+                           FontSize="30"/>
+                    <TextBlock Foreground="Gray"
+                               FontWeight="Black"
+                           Text="*"
+                           FontSize="30"/>
+                </StackPanel>
+                
+            </Border>
+            <!--<TextBox Style="{StaticResource TextBoxPinStyle}"
+                     Text="****"
+                     HorizontalContentAlignment="Center"
+                     Foreground="Gray"
+                     FontWeight="Bold"
+                     Focusable="False"
+                     IsHitTestVisible="False"
+                     FontSize="30"/>-->
+
+            <!--<Border BorderBrush="Gray" 
+                    BorderThickness="1" Height="40">
+                <TextBlock FontSize="50" 
+                           HorizontalAlignment="Center"
+                           Margin="5,5,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Foreground="Gray"
+                           Text="{Binding PINDisplay, FallbackValue=****}"/>
+            </Border>-->
+        </StackPanel>
+        <!--<Button Width="20"
+                Height="20"
+                HorizontalAlignment="Right"
+                FontSize="2"
+                Foreground="Red"
+                Style="{StaticResource XButtonNoBackgroundStyle}"
+                Command="{Binding Exit}"/>-->
+        <ListView Grid.Row="1" Width="auto"
+                  SelectionMode="Extended"
+                  ItemsSource="{Binding ApplicationViewModel.PINButtons,Source={x:Static local:ViewModelLocator.Instance}}"
+                  VerticalAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Text}" 
+                            FontSize="{Binding Size}"
+                            CommandParameter="{Binding .}"
+                            Command="{Binding DataContext.Digit,RelativeSource={RelativeSource AncestorType=ListView}}"
+                            Width="Auto"
+                            Height="Auto"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

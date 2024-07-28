@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:sarisari">
+    <FontFamily x:Key="LatoRegular">pack://application:,,,/WpfCore;component/Fonts/Lato/Lato-Regular.ttf#Lato</FontFamily>
+    <FontFamily x:Key="LatoBold">pack://application:,,,/WpfCore;component/Fonts/Lato/Lato-Bold.ttf#Lato</FontFamily>
+    
+    <Style TargetType="{x:Type TextBlock}" x:Key="LatoBoldStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoBold}"/>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="LatoStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}"/>
+    </Style>
+</ResourceDictionary>

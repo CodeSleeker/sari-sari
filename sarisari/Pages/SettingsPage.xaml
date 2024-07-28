@@ -1,0 +1,72 @@
+﻿<wpfCore:BasePage x:Class="sarisari.SettingsPage" x:TypeArguments="local:SettingsPageViewModel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:sarisari"
+      xmlns:wpfCore="clr-namespace:WpfCore;assembly=WpfCore"
+      mc:Ignorable="d" 
+      Title="SettingsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Gray" Text="USER: " FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="{Binding ApplicationViewModel.FullName,Source={x:Static local:ViewModelLocator.Instance}}" 
+                               Foreground="Black" 
+                               FontSize="16"
+                               Margin="5 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Gray" Text="CASH DRAWER ID: " FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="NOT AVAILABLE" Foreground="Black" Margin="5 0" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Gray" Text="CUSTOMER: " FontWeight="Bold" FontSize="16"/>
+                <TextBlock Text="" Foreground="Black" Margin="5 0" FontSize="16"/>
+            </StackPanel>
+            <Separator Margin="0,20"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="Catergories" 
+                    FontSize="20"
+                    Margin="10" 
+                    Width="Auto" 
+                    Command="{Binding Category}"
+                    Height="60"/>
+            <Button Content="Suppliers" 
+                    FontSize="20"
+                    Command="{Binding Supplier}"
+                    Margin="10" 
+                    Width="Auto" 
+                    Height="60"/>
+            <Button Content="Sizes" 
+                    FontSize="20"
+                    Command="{Binding Size}"
+                    Margin="10" 
+                    Width="Auto" 
+                    Height="60"/>
+            <Button Content="Stocks" 
+                    FontSize="20"
+                    Command="{Binding Stock}"
+                    Margin="10" 
+                    Width="Auto" 
+                    Height="60"/>
+            <Button Content="User Roles" 
+                    FontSize="20"
+                    Command="{Binding Role}"
+                    Margin="10" 
+                    Width="Auto" 
+                    Height="60"/>
+        </StackPanel>
+    </Grid>
+</wpfCore:BasePage>
